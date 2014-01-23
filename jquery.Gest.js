@@ -1,3 +1,17 @@
+/*
+Gest API - a plugin that adds hand gesture control in your website
+
+Usage:-
+
+$('#anytag').Gest('upper-left',function(){
+	mytrigger();
+});
+
+Types of actions supported:-
+*/
+
+
+
 (function($){
   $.fn.Gest = function(){
   function init() {
