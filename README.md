@@ -6,16 +6,15 @@ gestapi
 
 Gest jQuery Plugin - First jQuery plugin to enable custom triggers to 8 different hand gestures 
 
-Gest API is a plugin that utilises latest HTML5 standards to enable hand gesture input to convert it into custom triggers. 
+Gest API is a plugin that utilises latest HTML5 standards (WebRTC) to enable hand gesture input to convert it into custom triggers. 
 You may put any knid of trigger function for any type of hand gestures.
 
 Basically we have enabled 8 kind of triggers classified as follows:-
-
-4 diagonal gestures 
-
-4 linear gestures.
-
-Usage : 
+<ul>
+<li>4 diagonal gestures</li> 
+<li>4 linear gestures.</li>
+</ul>
+<b>Usage</b> : 
 
 $(anyelement).Gest('up',function(){
 
@@ -28,14 +27,6 @@ Easy to use.
 
 Developed at Arcoiris Labs by
 
-Amey Kshirsagar
-
-Tanmai Aurangabadkar
-
-Revati Tavare
-
-Radheya Kale
-
-Indtajit Bastapure
+Amey Kshirsagar, Tanmai Aurangabadkar, Revati Tavare, Radheya Kale, Indtajit Bastapure
 
 Released under GPLv3 Licence
