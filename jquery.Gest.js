@@ -21,10 +21,10 @@ Types of actions supported:-
 }
 var localStream = null;
 if (init()) { 
-  $(this).html('<video id="feed" style="width:'+window.innerWidth+'px; height:'+window.innerHeight+'px;-webkit-filter: grayscale(1);"  autoplay>');
+  $(this).html('<video id="feed" style="width:'+window.innerWidth+'px; height:'+window.innerHeight+'px;display:none;"  autoplay>');
   $('<canvas></canvas>', {
     id: 'pg',
-    style: 'display:block;width:'+window.innerWidth+'px; height:'+window.innerHeight+'px;',
+    style: 'display:block;width:'+window.innerWidth+'px; height:'+window.innerHeight+'px;-webkit-filter: grayscale(1);filter:grayscale(1)',
 }).appendTo(this);
   var c = document.querySelector('canvas');
     var ctx = c.getContext('2d');
@@ -39,8 +39,9 @@ if (init()) {
       {
       setInterval(function(){
         console.log('drawing');
+        //rendering video in canvas
         c.width = video.videoWidth;
-    c.height = video.videoHeight;
+    	c.height = video.videoHeight;
         ctx.drawImage(video,0,0);
       },20);
     	}
