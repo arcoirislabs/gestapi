@@ -39,6 +39,7 @@ if (init()) {
 }).appendTo(this);
   var c = document.querySelector('canvas');
     var ctx = c.getContext('2d');
+    var threshold;
   navigator.getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
   navigator.getUserMedia({video:true, audio:false,},
     function(stream){
@@ -53,22 +54,18 @@ if (init()) {
     	c.height = video.videoHeight;
       ctx.drawImage(video,0,0);
       //grayscaling & binarising
-     var imageData = ctx.getImageData(0, 0, c.width, c.height);
+     var imgData = ctx.getImageData(0, 0, c.width, c.height);
         var pix  = imgData.data;
-        for (var i = 0, n = pixels.length; i < n; i += 4) {
-        var grayscale = pixels[i] * .3 + pixels[i+1] * .59 + pixels[i+2] * .11;
-        pixels[i  ] = grayscale;        // red
-        pixels[i+1] = grayscale;        // green
-        pixels[i+2] = grayscale;        // blue
-        //pixels[i+3]              is alpha, but we are not concerned with it.
+        for (var i = 0, n = pix.length; i < n; i += 4) {
+        var grayscale = pix[i] * .3 + pix[i+1] * .59 + pix[i+2] * .11 ;
+        pix[i  ] = grayscale;        // red
+        pix[i+1] = grayscale;        // green
+        pix[i+2] = grayscale;        // blue
+        //pix[i+3]              is alpha, but we are not concerned with it.
     }
     //redraw the image in black & white
     ctx.putImageData(imgData, 0, 0);
     },20);
-
-      function binaryimg(ctxt,cvs){
-          
-         }
     	}
   }, 
   //error function
