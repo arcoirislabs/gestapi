@@ -24,7 +24,7 @@ if (init()) {
   $(this).html('<video id="feed" style="width:'+window.innerWidth+'px; height:'+window.innerHeight+'px;display:none;"  autoplay>');
   $('<canvas></canvas>', {
     id: 'pg',
-    style: 'display:block;width:'+window.innerWidth+'px; height:'+window.innerHeight+'px;-webkit-filter: grayscale(1);filter:grayscale(1)',
+    style: 'display:block;width:'+window.innerWidth+'px; height:'+window.innerHeight+'px;',
 }).appendTo(this);
   var c = document.querySelector('canvas');
     var ctx = c.getContext('2d');
@@ -35,15 +35,29 @@ if (init()) {
    		var url = window.URL || window.webkitURL;       
     	video.src =url.createObjectURL(stream);
       localStream=stream;
-      if (localStream)
-      {
-      setInterval(function(){
-        console.log('drawing');
-        //rendering video in canvas
-        c.width = video.videoWidth;
+  if (localStream){
+    setInterval(function(){
+      //rendering video in canvas
+      c.width = video.videoWidth;
     	c.height = video.videoHeight;
-        ctx.drawImage(video,0,0);
-      },20);
+      ctx.drawImage(video,0,0);
+      //grayscaling & binarising
+     var imgData = ctx.getImageData(0, 0, c.width, c.height);
+        var pixels  = imgData.data;
+        for (var i = 0, n = pixels.length; i < n; i += 4) {
+        var grayscale = pixels[i] * .3 + pixels[i+1] * .59 + pixels[i+2] * .11;
+        pixels[i  ] = grayscale;        // red
+        pixels[i+1] = grayscale;        // green
+        pixels[i+2] = grayscale;        // blue
+        //pixels[i+3]              is alpha
+    }
+    //redraw the image in black & white
+    ctx.putImageData(imgData, 0, 0);
+    },20);
+
+      function binaryimg(ctxt,cvs){
+          
+         }
     	}
   }, 
   //error function
