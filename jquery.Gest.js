@@ -56,7 +56,7 @@ if (init()) {
       //grayscaling & binarising
      var imgData = ctx.getImageData(0, 0, c.width, c.height);
         var pix  = imgData.data;
-        for (var i = 0, n = pix.length; i < n; i += 4) {
+        for (var i = 0, n = pix.length; i < n; i += 4){
         var grayscale = pix[i] * .3 + pix[i+1] * .59 + pix[i+2] * .11 ;
         pix[i  ] = grayscale;        // red
         pix[i+1] = grayscale;        // green
