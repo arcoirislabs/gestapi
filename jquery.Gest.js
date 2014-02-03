@@ -31,6 +31,8 @@ Types of actions supported:-
             navigator.mozGetUserMedia || navigator.msGetUserMedia);
 }
 var localStream = null;
+var lskin =102+42+25;
+var dskin = 3*63;
 if (init()) { 
   $(this).html('<video id="feed" style="width:'+window.innerWidth+'px; height:'+window.innerHeight+'px;display:none;"  autoplay>');
   $('<canvas></canvas>', {
@@ -65,6 +67,13 @@ if (init()) {
     }
     //redraw the image in black & white
     ctx.putImageData(imgData, 0, 0);
+    var GimgData = ctx.getImageData(0, 0, c.width, c.height);
+    for (var i = 0, n = GimgData.data.length; i < n; i += 4){
+        var gpix = pix[i] + pix[i+1] + pix[i+2] ;
+    var threshold = lskin; 
+    GimgData.data[i] = GimgData.data[i+1] = GimgData.data[i+2] = GimgData.data[i] > threshold ? 255 : 0;
+    }
+    ctx.putImageData(GimgData, 0, 0);
     },20);
     	}
   }, 
