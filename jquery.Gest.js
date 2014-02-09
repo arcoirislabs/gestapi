@@ -15,7 +15,7 @@ This location will determine the nature of action and once it is detected it wil
 Usage:-
 
 $('#anytag').Gest('upper-left',function(){
-	mytrigger();
+  mytrigger();
 });
 
 Types of actions supported:-
@@ -31,8 +31,10 @@ Types of actions supported:-
             navigator.mozGetUserMedia || navigator.msGetUserMedia);
 }
 var localStream = null;
-var lskin =102+42+25;
-var dskin = 3*63;
+var lskinR =61;
+var lskinG =39;
+var lskinB = 52;
+var dskin = 3*38;
 if (init()) { 
   $(this).html('<video id="feed" style="width:'+window.innerWidth+'px; height:'+window.innerHeight+'px;display:none;"  autoplay>');
   $('<canvas></canvas>', {
@@ -45,18 +47,19 @@ if (init()) {
   navigator.getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
   navigator.getUserMedia({video:true, audio:false,},
     function(stream){
-    	var video = document.querySelector('video');
-   		var url = window.URL || window.webkitURL;       
-    	video.src =url.createObjectURL(stream);
+      var video = document.querySelector('video');
+      var url = window.URL || window.webkitURL;       
+      video.src =url.createObjectURL(stream);
       localStream=stream;
   if (localStream){
     setInterval(function(){
       //rendering video in canvas
       c.width = video.videoWidth;
-    	c.height = video.videoHeight;
+      c.height = video.videoHeight;
       ctx.drawImage(video,0,0);
+      
       //grayscaling & binarising
-     var imgData = ctx.getImageData(0, 0, c.width, c.height);
+     var imgData = ctx.getImageData(0,0,c.width,c.height);
         var pix  = imgData.data;
         for (var i = 0, n = pix.length; i < n; i += 4){
         var grayscale = pix[i] * .3 + pix[i+1] * .59 + pix[i+2] * .11 ;
@@ -66,16 +69,17 @@ if (init()) {
         //pix[i+3]              is alpha, but we are not concerned with it.
     }
     //redraw the image in black & white
-    ctx.putImageData(imgData, 0, 0);
-    var GimgData = ctx.getImageData(0, 0, c.width, c.height);
+    //ctx.putImageData(imgData, 0, 0);
+    var GimgData = ctx.getImageData(0,0,c.width,c.height);
     for (var i = 0, n = GimgData.data.length; i < n; i += 4){
-        var gpix = pix[i] + pix[i+1] + pix[i+2] ;
-    var threshold = lskin; 
-    GimgData.data[i] = GimgData.data[i+1] = GimgData.data[i+2] = GimgData.data[i] > threshold ? 255 : 0;
+        
+    GimgData.data[i] = GimgData.data[i] == lskinR ? 255 : 0;
+    GimgData.data[i+1] = GimgData.data[i] == lskinG ? 255 : 0;
+    GimgData.data[i+2] = GimgData.data[i] == lskinB ? 255 : 0;
     }
     ctx.putImageData(GimgData, 0, 0);
     },20);
-    	}
+      }
   }, 
   //error function
   function(err){console.log('erroe');});
