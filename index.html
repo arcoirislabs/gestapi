@@ -1,20 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript" src="jquery.js"></script>
-
-	<title>asdasd</title>
-	<style type="text/css">
-body{
-margin:0px;
-}
-	</style>
+	<title>Javascript motion detection</title>
+	<link rel="stylesheet" href="styles/main.css"/>
 </head>
 <body>
-<script type="text/javascript" src="jquery.Gest.js"></script>
-<div id="gest"></div>
+
+<div id="description"></div>
+<div id="message">Loading assets...</div>
+<div id="info" style="display:none">
+	<p>You are watching a video demo, follow the instructions below to enable your webcam.</p>
+	<p>Please view this page using <a href="http://tools.google.com/dlpage/chromesxs" target="_blank">Google Chrome Canary</a> and enable the "Media Stream" flag in about:flags.</p>
+	<img src="images/mediastream.png"/>
+</div>
+
+<!--<device type="media"></device>-->
+<video id="webcam" autoplay width="630" height="480"></video>
+
+<video id="video-demo" controls="controls" poster="videos/jsdetection.jpg" width="640" height="480"  onclick="if(/Android/.test(navigator.userAgent))this.play();">
+	<source src="videos/jsdetection.mp4" type="video/mp4" />
+	<source src="videos/jsdetection.ogv" type="video/ogg" />
+	<source src="videos/jsdetection.webm" type="video/webm" />
+	Your browser doesn't support the html 5 video tag.
+</video>
+
+<canvas id="canvas-source" width="630" height="480"></canvas>
+<canvas id="canvas-blended" width="630" height="480"></canvas>
+
+<div id="grid">
+	<div id="back"><img id="xyloback" src="images/xylo.png" style="opacity:0.7;" /></div>
+	<div id="front">
+		<img id="note0" src="images/pad1.png"/>
+		<img id="note1" src="images/pad2.png" style="margin-left:136px;"/>
+		<img id="note2" src="images/pad1.png" style="margin-left:270px;"/>
+		<img id="note3" src="images/pad2.png" style="margin-left:-237px;margin-top:167px;"/>
+		<img id="note4" src="images/pad3.png" style="margin-left:-102px;margin-top:170px;"/>
+		<img id="note5" src="images/pad2.png" style="margin-left:33px;margin-top:171px;"/>
+		<img id="note6" src="images/pad1.png" style="margin-left:-470px;margin-top:333px;"/>
+		<img id="note7" src="images/pad2.png" style="margin-left:-330px;margin-top:333px;"/>
+		<img id="note8" src="images/pad1.png" style="margin-left:422px;margin-top:333px;"/>
+		
+	</div>
+</div>
+
+
+<script src="js/libs/jquery.js"></script>
+<script src="js/jquery.Gest.js"></script>
 <script type="text/javascript">
-	jQuery('#gest').Gest();
+	jQuery('#webcam').Gest();
 	</script>
 </body>
 </html>
