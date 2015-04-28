@@ -27,6 +27,5 @@ Easy to use.
 
 Developed at Arcoiris Labs by
 
-Amey Kshirsagar, Tanmai Aurangabadkar, Revati Tavare, Radheya Kale, Indtajit Bastapure
-
+Amey Kshirsagar
 Released under GPLv3 Licence
