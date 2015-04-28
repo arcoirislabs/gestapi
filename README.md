@@ -25,7 +25,6 @@ anyfunction();
 Easy to use.
 
 
-Developed at Arcoiris Labs by
+Developed at Arcoiris Labs by Amey Kshirsagar
 
-Amey Kshirsagar
 Released under GPLv3 Licence
